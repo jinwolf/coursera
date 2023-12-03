@@ -82,6 +82,7 @@ func main() {
 		// Sorting each slice in a goroutine
 		wg.Add(1)
 		go func(i int) {
+			fmt.Printf("Go routine %d will sort: %v\n", i+1, slices[i])
 			defer wg.Done()
 			sort.Ints(slices[i])
 		}(i)
@@ -93,6 +94,5 @@ func main() {
 
 	//quick sort and merge sort?
 	sortedSlice := mergeSlices(slices[0],slices[1],slices[2],slices[3])
-	fmt.Println("Original input numbers:", originalSlice)	
 	fmt.Println("Sorted   input numbers:", sortedSlice)
 }
