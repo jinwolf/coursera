@@ -37,12 +37,29 @@ func getUserInput() []int {
 	return userInput
 }
 	
-func mergeSlices(slices ...[]int) []int {
-	var result [] int
-	for _, s := range slices {
-		result = append(result, s...)
+func mergeSlices(a, b, c, d []int) []int {
+	ab := mergeTwoSlices(a, b)
+	cd := mergeTwoSlices(c, d)
+
+	return mergeTwoSlices(ab, cd)
+}
+
+func mergeTwoSlices(a, b []int) []int {
+	result := make([]int, 0, len(a) + len(b))
+	i, j := 0, 0
+
+	for i < len(a) && j < len(b) {
+		if a[i] < b[j] {
+			result = append(result, a[i])
+			i++
+		} else {
+			result = append(result, b[j])
+			j++
+		}
 	}
-	sort.Ints(result)
+	
+	result = append(result, a[i:]...)
+	result = append(result, b[j:]...)
 	return result
 }
 
