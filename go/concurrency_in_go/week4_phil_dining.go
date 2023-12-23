@@ -30,10 +30,10 @@ func (p Philosopher) eat(permChan chan bool, wg *sync.WaitGroup) {
 			p.leftChopstick.Lock()
 		}
 
-		fmt.Printf("starting to eat %d\n", p.id)
+		fmt.Printf("%d: starting to eat \n", p.id)
 		p.eatCount++
 		time.Sleep(time.Duration(rand.Intn(1000)) * time.Millisecond)
-		fmt.Printf("finishing eating %d\n", p.id)
+		fmt.Printf("%d: finishing eating \n", p.id)
 
 		p.rightChopstick.Unlock()
 		p.leftChopstick.Unlock()
