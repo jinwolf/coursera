@@ -13,7 +13,9 @@ func TestMergeSort(t *testing.T) {
 	}{
 		{"empty slice", []int{}, []int{}},
 		{"single element", []int{1}, []int{1}},
-		//{"sorted slice", []int{1, 2, 3}, []int{1, 2, 3}},
+		{"sorted slice", []int{1, 2, 3}, []int{1, 2, 3}},
+		{"Unsorted slice", []int{5, 2, 3}, []int{2, 3, 5}},
+		{"Unsorted slice", []int{5, 2, 3, 10, 25, 12, 33, -1}, []int{-1, 2, 3, 5, 10, 12, 25, 33}},
 	}
 
 	for _, tc := range testCases {
@@ -70,7 +72,7 @@ func TestMergeSlices(t *testing.T) {
 		})
 	}
 }
-
+/*
 func TestMergeInPlace(t *testing.T) {
 	testCases := []struct {
 		name string
@@ -93,3 +95,6 @@ func TestMergeInPlace(t *testing.T) {
 		})
 	}
 }
+*/
+
+

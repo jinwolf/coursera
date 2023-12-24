@@ -1,37 +1,47 @@
 package sortlib
 
-func MergeSort(arr []int) []int {
-	// implement the merge sort algorithm
-	if len(arr) == 0 {
-		return []int{}
-	}
+import (
+	"fmt"
+)
 
-	if len(arr) == 1 {
+func MergeSort(arr []int) []int {
+	if len(arr) <= 1 {
 		return arr
 	}
 
-	return []int{1,2} 
+	mid := len(arr) / 2
+	left := MergeSort(arr[:mid])
+	right := MergeSort(arr[mid:])
+
+	// Merge the two halves
+	return MergeSlices(left, right)
 }
 
 func MergeInPlace(list []int) {
-	i, j, k := 0, 0, 0
-
 	// for loop that starts from 2, 4, 8, 16 until it rearches the half of the query 
-	h := 2
+	// let's visualize 8 elements in the int list
+	// 3, 1, 2, 14, 35, 14, 10, 8
+	// [1, 3] [2, 14], [35, 14], [10, 8]
+	// [1, 2, 3, 14]
+	
+	h := 1
 
-	for h < len(list)/2 {
-		for i < len(a) && j < len(b) {
-			if a[i] <= b[j] {
-				merged[k] = a[i]
+	fmt.Println("Sorting started", h)
+	for h <= (len(list) + 1)/2 {
+		i := h - 1 
+		j := h
+
+		fmt.Println("-------------------")
+		for i < h && j < h * 2 {
+			if list[i] <= list[j] {
 				i++
 			} else {
-				merged[k] = b[j]
+				Swap(&list[i], &list[j])
 				j++
 			}
 
-			k++
 		}
-
+/*
 		for i < len(a) {
 			merged[k] = a[i]
 			i++
@@ -43,11 +53,11 @@ func MergeInPlace(list []int) {
 			j++
 			k++
 		}
+		*/
 
 		h *= 2
 	}
 
-	return merged
 }
 
 func MergeSlices(a, b []int) []int {
